@@ -1,5 +1,5 @@
 import Solve
-import random
+#import random
 class PublicKey:
     p = 1
     alpha = 1
@@ -14,7 +14,7 @@ doc = Doc()
 def init():
     print("------Khởi tạo giá trị------")
     p = int(input("nhập số nguyên tố p:"))
-    while not Solve.isPrime(p):
+    while (not (Solve.isPrime(p))) and (not (Solve.isPrime((p-1)/2))) :
         p = int(input("nhập lại số nguyên tố p:"))
     publicKey.p = p
 

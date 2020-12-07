@@ -9,12 +9,12 @@ def disavowal(docX, signY, e1, e2, c, d):
     f1 = int(input("nhập f1: "))
     f2 = int(input("nhập f2: "))
     C = Solve.powerMode(signY, f1, init.publicKey.p)*Solve.powerMode(init.publicKey.beta, f2, init.publicKey.p) % init.publicKey.p
-    print("bên kiểm thử tính C và gửi cho bên ký: C =" + str(C))
+    print("bên kiểm thử tính C và gửi cho bên ký: C = y^f1 * beta^f2 mod p =" + str(C))
     D = Solve.powerMode(C, Solve.ext_gcd(int((init.publicKey.p-1)/2), init.privateKey.a), init.publicKey.p)
-    print("bên ký tính D và gửi cho bên kiểm thử: D = " + str(D))
+    print("bên ký tính D và gửi cho bên kiểm thử: D = C^(a^-1 mod q) mod p = " + str(D))
     check = Solve.powerMode(docX, f1, init.publicKey.p)*Solve.powerMode(init.publicKey.alpha, f2, init.publicKey.p) % init.publicKey.p
 
-    print("bên kiểm tính 'check' thử xác minh xem có trùng với D không, check = " + str(check))
+    print("bên kiểm tính 'check' thử xác minh xem D = x^f1 * alpha^f2 mod p không, check = " + str(check))
     if(check == D): print(" => chữ ký y trên x hợp lệ")
     else:
         print("không trùng => thực hiện bước cuối cùng là kiểm tra tính phù hợp")
